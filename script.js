@@ -1,28 +1,4 @@
-console.log("Projeto Missão IA iniciado!");
 const caixaPrincipal = document.querySelector(".caixa-principal");
-const caixaPerguntas = document.querySelector(".caixa-perguntas");
-const caixaAlternativas = document.querySelector(".caixa-alternativas");
-const caixaResultado = document.querySelector(".caixa-resultado");
-const textoResultado = document.querySelector(".texto-resultado");
-
-let atual = 0;
-
-const perguntas = [
-    {
-        enunciado: "Pergunta 1",
-        alternativas: [
-            "Alternativa 1",
-            "Alternativa 2"
-        ]
-    },
-    {
-        enunciado: "Pergunta 2",
-        alternativas: [
-            "Alternativa 1",
-            "Alternativa 2"
-        ]
-    }
-];const caixaPrincipal = document.querySelector(".caixa-principal");
 const caixaPerguntas = document.querySelector(".caixa-perguntas");
 const caixaAlternativas = document.querySelector(".caixa-alternativas");
 const caixaResultado = document.querySelector(".caixa-resultado");
@@ -71,6 +47,7 @@ let perguntaAtual;
 
 function mostraPergunta() {
     perguntaAtual = perguntas[atual];
+
     caixaPerguntas.textContent = perguntaAtual.enunciado;
 }
 
