@@ -1,4 +1,3 @@
-const caixaPrincipal = document.querySelector(".caixa-principal");
 const caixaPerguntas = document.querySelector(".caixa-perguntas");
 const caixaAlternativas = document.querySelector(".caixa-alternativas");
 const caixaResultado = document.querySelector(".caixa-resultado");
@@ -10,63 +9,67 @@ const perguntas = [
         alternativas: [
             {
                 texto: "Isso é assustador!",
-                afirmacao: "Você ficou preocupado com os avanços da tecnologia."
+                afirmacao: "A inteligência artificial pode trazer riscos."
             },
             {
                 texto: "Isso é maravilhoso!",
-                afirmacao: "Você ficou animado com as possibilidades da tecnologia."
+                afirmacao: "A inteligência artificial pode trazer possibilidades."
             }
         ]
     },
+
     {
-        enunciado: "Com a descoberta desta tecnologia, chamada Inteligência Artificial (IA), uma professora de tecnologia da escola decidiu fazer uma sequência de aulas sobre esta tecnologia. No fim de uma aula ela pede que você escreva um trabalho sobre o uso de IA em sala de aula. Qual atitude você toma?",
+        enunciado: "Com a descoberta desta tecnologia, chamada Inteligência Artificial (IA), uma professora pede que você escreva um trabalho sobre o uso de IA em sala de aula. Qual atitude você toma?",
         alternativas: [
             {
-                texto: "Utiliza uma ferramenta de busca na internet que utiliza IA para que ela ajude a encontrar informações relevantes para o trabalho e explique numa linguagem que facilite o entendimento.",
-                afirmacao: "Você utiliza a IA como uma ferramenta para aprender e pesquisar."
+                texto: "Utiliza uma ferramenta de IA para ajudar na pesquisa.",
+                afirmacao: "A IA pode ajudar nos estudos."
             },
             {
-                texto: "Escreve o trabalho com base nas conversas que teve com colegas, algumas pesquisas na internet e conhecimentos próprios sobre o tema.",
-                afirmacao: "Você prefere pesquisar e construir o trabalho com seus próprios conhecimentos."
+                texto: "Pesquisa na internet e utiliza seus próprios conhecimentos.",
+                afirmacao: "Também é importante desenvolver conhecimentos próprios."
             }
         ]
     },
+
     {
-        enunciado: "Após a elaboração do trabalho, a professora realizou um debate entre a turma para entender como foi realizada a pesquisa e escrita. Nessa conversa também foi levantado um ponto muito importante: como a IA impacta o trabalho do futuro. Nesse debate, como você se posiciona?",
+        enunciado: "Como a IA impacta o trabalho do futuro? Nesse debate, como você se posiciona?",
         alternativas: [
             {
-                texto: "Defende a ideia de que a IA pode criar novas oportunidades de emprego e melhorar habilidades humanas.",
-                afirmacao: "Você acredita que a IA pode criar novas oportunidades."
+                texto: "A IA pode criar novas oportunidades de emprego.",
+                afirmacao: "A IA pode criar novas oportunidades."
             },
             {
-                texto: "Me preocupo com as pessoas que perderão seus empregos para máquinas e defendo a importância de proteger os trabalhadores.",
-                afirmacao: "Você se preocupa com os impactos da IA no mercado de trabalho."
+                texto: "Me preocupo com as pessoas que perderão seus empregos.",
+                afirmacao: "É importante pensar nos trabalhadores."
             }
         ]
     },
+
     {
-        enunciado: "Ao final da discussão, você precisou criar uma imagem no computador que representasse o que pensa sobre IA. E agora?",
+        enunciado: "Você precisa criar uma imagem que represente o que pensa sobre IA. E agora?",
         alternativas: [
             {
-                texto: "Criar uma imagem utilizando uma plataforma de design como o Paint.",
-                afirmacao: "Você escolheu criar sua imagem de forma tradicional."
+                texto: "Criar uma imagem utilizando o Paint.",
+                afirmacao: "Ferramentas tradicionais também são úteis."
             },
             {
-                texto: "Criar uma imagem utilizando um gerador de imagem de IA.",
-                afirmacao: "Você decidiu experimentar a criação de imagens com IA."
+                texto: "Criar uma imagem utilizando IA.",
+                afirmacao: "A IA pode ajudar na criação de imagens."
             }
         ]
     },
+
     {
-        enunciado: "Você tem um trabalho em grupo de biologia para entregar na semana seguinte, o andamento do trabalho está um pouco atrasado e uma pessoa do seu grupo decidiu fazer com ajuda de uma IA. O problema é que o trabalho está totalmente igual ao do chat. O que você faz?",
+        enunciado: "Seu grupo fez um trabalho com ajuda da IA, mas o texto está totalmente igual ao do chat. O que você faz?",
         alternativas: [
             {
-                texto: "Escrever comandos para o chat é uma forma de contribuir com o trabalho, por isso não é um problema utilizar o texto inteiro.",
-                afirmacao: "Você considera que utilizar o texto inteiro da IA pode ser uma forma de contribuição."
+                texto: "Utiliza o texto inteiro da IA.",
+                afirmacao: "A IA pode ser utilizada para produzir textos."
             },
             {
-                texto: "O chat pode ser uma tecnologia muito avançada, mas é preciso manter a atenção pois toda máquina erra, por isso revisar o trabalho e contribuir com as perspectivas pessoais é essencial.",
-                afirmacao: "Você entende que é importante revisar o conteúdo da IA e acrescentar suas próprias ideias."
+                texto: "Revisa o trabalho e adiciona suas próprias ideias.",
+                afirmacao: "É importante revisar e contribuir com ideias próprias."
             }
         ]
     }
@@ -80,29 +83,36 @@ function mostraPergunta() {
 
     caixaPerguntas.textContent = perguntaAtual.enunciado;
 
+    caixaAlternativas.innerHTML = "";
+
     mostraAlternativas();
 }
 
 function mostraAlternativas() {
-
-    caixaAlternativas.innerHTML = "";
-
     for (const alternativa of perguntaAtual.alternativas) {
 
-        const botaoAlternativas = document.createElement("button");
+        const botao = document.createElement("button");
 
-        botaoAlternativas.textContent = alternativa.texto;
+        botao.textContent = alternativa.texto;
 
-        botaoAlternativas.addEventListener("click", function() {
+        botao.addEventListener("click", function() {
             atual++;
 
             if (atual < perguntas.length) {
                 mostraPergunta();
+            } else {
+                mostraResultado();
             }
         });
 
-        caixaAlternativas.appendChild(botaoAlternativas);
+        caixaAlternativas.appendChild(botao);
     }
+}
+
+function mostraResultado() {
+    caixaPerguntas.textContent = "Fim do jogo!";
+    caixaAlternativas.innerHTML = "";
+    textoResultado.textContent = "Você terminou o quiz!";
 }
 
 mostraPergunta();
